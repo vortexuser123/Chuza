@@ -316,7 +316,18 @@
             
             let count = 0;
             const colors = ['#ff7675','#74b9ff','#55efc4','#a29bfe','#fd79a8','#ffeaa7'];
-            const photos = ['photos']; 
+            
+            // --- 👇 EDIT THIS LIST 👇 ---
+            // Add as many photos as you want here!
+            const photos = [
+                'arya1.jpg',
+                'arya2.jpg',
+                'arya3.jpg',
+                'arya4.jpg',
+                'arya2.png',
+                'arya3.jpg' 
+            ]; 
+            // ---------------------------
 
             const interval = setInterval(() => {
                 const b = document.createElement('div');
@@ -325,28 +336,20 @@
                 b.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
                 b.style.animationDuration = (Math.random() * 2 + 4) + 's';
                 
-                if(Math.random() > 0.8) {
+                // This logic picks a RANDOM photo from your list above
+                if(Math.random() > 0.7) { // 30% of balloons will have a photo
                     const p = document.createElement('div');
                     p.className = 'tied-photo';
-                    p.innerHTML = `<img src="${photos[Math.floor(Math.random()*photos.length)]}">`;
+                    
+                    // Picks a random image from your list
+                    const randomImg = photos[Math.floor(Math.random() * photos.length)];
+                    
+                    p.innerHTML = `<img src="${randomImg}">`;
                     b.appendChild(p);
                 }
                 skyScene.appendChild(b);
 
-                const c = document.createElement('div');
-                c.className = 'confetti';
-                c.style.left = Math.random() * 100 + 'vw';
-                c.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-                c.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                skyScene.appendChild(c);
-                
-                count++;
-                if(count > 60) {
-                    clearInterval(interval);
-                    setTimeout(() => { wishContainer.style.opacity = "1"; }, 1500);
-                }
-            }, 150);
-        }
+                // ... rest of the code (confetti) ...
 
         function openSecret() { document.getElementById('secret-modal').style.display = 'flex'; }
         
